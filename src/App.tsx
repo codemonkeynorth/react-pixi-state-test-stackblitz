@@ -16,6 +16,7 @@ function App() {
     updateTextureByRef,
     updateDynamicTextureByState,
     updateDynamicTextureByRef,
+    updateNeoByState,
     addFilters,
     removeFilters,
     texture,
@@ -49,6 +50,9 @@ function App() {
       <br />
       <button onClick={addFilters}>add filters</button>
       <button onClick={removeFilters}>remove filters</button>
+      <br />
+      <br />
+      <button onClick={updateNeoByState}>Update neo by state</button>
     </div>
   );
 }

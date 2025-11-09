@@ -124,6 +124,11 @@ const useApp = ({ spriteRef }: UseAppProps) => {
     console.log('updateDynamicTextureByState:', performance.now() - perf, 'ms');
   }
 
+  const updateNeoByState = () => {
+    const newTexture = createTextureFrom(reactTexture);
+    setTexture(newTexture);
+  }
+
   const addFilters = () => {
     const cf = new ColorMatrixFilter();
     const blur = new BlurFilter({ strength: 16 });
@@ -140,6 +145,7 @@ const useApp = ({ spriteRef }: UseAppProps) => {
     updateTextureByRef,
     updateDynamicTextureByState,
     updateDynamicTextureByRef,
+    updateNeoByState,
     addFilters,
     removeFilters,
     texture,
