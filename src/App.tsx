@@ -15,6 +15,7 @@ function App() {
     updateTextureByState,
     updateTextureByRef,
     updateDynamicTextureByState,
+    updateDynamicTextureByRef,
     addFilters,
     removeFilters,
     texture,
@@ -34,13 +35,16 @@ function App() {
       ></PixiImage>
 
       <button onClick={updateTextureByState}>
-        Update texture by state (vite logo)
+        Update texture by state (millie)
       </button>
       <button onClick={updateTextureByRef}>
-        Update texture by ref (react logo)
+        Update texture by ref (neo)
       </button>
       <button onClick={updateDynamicTextureByState}>
         update dynamic texture by state
+      </button>
+      <button onClick={updateDynamicTextureByRef}>
+        update dynamic texture by ref
       </button>
       <br />
       <button onClick={addFilters}>add filters</button>

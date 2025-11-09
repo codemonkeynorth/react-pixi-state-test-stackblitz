@@ -28,7 +28,7 @@ const useApp = ({ spriteRef }: UseAppProps) => {
   useEffect(() => {
     const loadTexture1 = async () => {
       //const vtexture = await Assets.load('/vite.svg');
-      const vtexture = await Assets.load('/neo1024.jpg');
+      const vtexture = await Assets.load('/millie1024.jpg');
 
       setViteTexture(vtexture);
     };
@@ -38,7 +38,7 @@ const useApp = ({ spriteRef }: UseAppProps) => {
   useEffect(() => {
     const loadTexture2 = async () => {
       //const rtexture = await Assets.load('/react.svg');
-      const rtexture = await Assets.load('/millie1024.jpg');
+      const rtexture = await Assets.load('/neo1024.jpg');
       
       
       setReactTexture(rtexture);
@@ -80,11 +80,8 @@ const useApp = ({ spriteRef }: UseAppProps) => {
     console.log('updateTextureByRef:', performance.now() - perf, 'ms');
   };
 
-  const updateDynamicTextureByState = () => {
-    if (!reactTexture) return;
-
-    const perf = performance.now();
-
+  const createDynamicTexture = () => {
+    if(!reactTexture) return
     const w = reactTexture.width;
     const h = reactTexture.height;
     const buffer = new Uint8Array(w * h * 4);
@@ -106,10 +103,26 @@ const useApp = ({ spriteRef }: UseAppProps) => {
 
     const t = Texture.from(newSource, true);
     t.source.scaleMode = 'nearest';
-    setTexture(t);
 
+    return t
+
+  }
+
+  const updateDynamicTextureByState = () => {
+    
+    const perf = performance.now();
+    const newTexture = createDynamicTexture()
+    if(newTexture) setTexture(newTexture);
     console.log('updateDynamicTextureByState:', performance.now() - perf, 'ms');
   };
+
+  const updateDynamicTextureByRef = () => {
+    if(!spriteRef.current) return
+    const perf = performance.now();
+    const newTexture = createDynamicTexture()
+    if(newTexture) spriteRef.current.texture = newTexture
+    console.log('updateDynamicTextureByState:', performance.now() - perf, 'ms');
+  }
 
   const addFilters = () => {
     const cf = new ColorMatrixFilter();
@@ -126,6 +139,7 @@ const useApp = ({ spriteRef }: UseAppProps) => {
     updateTextureByState,
     updateTextureByRef,
     updateDynamicTextureByState,
+    updateDynamicTextureByRef,
     addFilters,
     removeFilters,
     texture,
