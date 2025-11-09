@@ -28,11 +28,8 @@ const useApp = ({ spriteRef }: UseAppProps) => {
   useEffect(() => {
     const loadTexture1 = async () => {
       //const vtexture = await Assets.load('/vite.svg');
-      const vtexture = await Assets.load({
-        src: 'https://placecats.com/neo/1024/1024',
-        loadParser: 'loadTextures',
-      });
-      //const vtexture = Texture.from('https://placecats.com/neo/1024/1024');
+      const vtexture = await Assets.load('/neo1024.jpg');
+
       setViteTexture(vtexture);
     };
     loadTexture1();
@@ -40,18 +37,10 @@ const useApp = ({ spriteRef }: UseAppProps) => {
 
   useEffect(() => {
     const loadTexture2 = async () => {
-      await Assets.init({
-        preferences: {
-          crossOrigin: 'anonymous',
-        },
-      });
       //const rtexture = await Assets.load('/react.svg');
-      const rtexture = await Assets.load({
-        src: 'https://placecats.com/millie/1024/1024',
-        loadParser: 'loadTextures',
-      });
-
-      //const rtexture = Texture.from('https://placecats.com/millie/1024/1024');
+      const rtexture = await Assets.load('/millie1024.jpg');
+      
+      
       setReactTexture(rtexture);
     };
     loadTexture2();
